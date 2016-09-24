@@ -6,14 +6,14 @@ function fish_greeting -d "Greeting message on shell session start up"
     echo -en "              \n"
     echo -en "    ⣿⣿⣿⣿⣿⣿   " (show_date_info) "\n"
     echo -en "    ⣿⣿        \n"
-    echo -en "    ⣿⣿⣿⣿⣿⣿   \tMr. Robot computer:\n"
+    echo -en "    ⣿⣿⣿⣿⣿⣿   " (show_current_users) "\n"
     echo -en "    ⣿⣿       " (show_os_info) "\n"
     echo -en "    ⣿⣿⣿⣿⣿⣿  " (show_cpu_info) "\n"
     echo -en "            " (show_mem_info) "\n"
     echo -en "    E Corp   " (show_net_info) "\n"
     echo ""
     set_color grey
-    echo "Have a nice trip"
+    echo "Have a Nice Day"
     set_color normal
 end
 
@@ -43,6 +43,17 @@ function show_date_info -d "Prints information about date"
     echo -en "."
 end
 
+function show_current_users -d "Prints currently logged-in Users"
+
+    set --local users (who | cut -d' ' -f1 | sort | uniq)
+
+    set_color yellow
+    echo -en "\tLogged-in Users: "
+    set_color 0F0  # green
+    echo -en "$users"
+    set_color normal
+
+end
 
 function show_os_info -d "Prints operating system info"
 
