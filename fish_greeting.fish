@@ -12,9 +12,7 @@ function fish_greeting -d "Greeting message on shell session start up"
     echo -en "            " (show_mem_info) "\n"
     echo -en "    E Corp   " (show_net_info) "\n"
     echo ""
-    set_color grey
     echo "Have a Nice Day"
-    set_color normal
 end
 
 
