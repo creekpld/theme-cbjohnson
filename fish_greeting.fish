@@ -28,7 +28,8 @@ end
 
 function show_date_info -d "Prints information about date"
 
-    set --local up_time (uptime |sed 's/^ *//g' |cut -d " " -f4,5 |tr -d ",")
+    #set --local up_time (uptime |sed 's/^ *//g' |cut -d " " -f4,5 |tr -d ",")
+    set --local up_time   (uptime | cut -d ',' -f1 | cut -d 'p' -f2)
 
     echo -en "\tToday is "
     set_color cyan
