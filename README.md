@@ -1,8 +1,12 @@
-## cbjohnson theme
+## PLD theme 
 
-A minimal theme forked from the [yimmy][yimmy-commit] theme (thanks [jhillyerd][yimmy-author]!)
+A theme forked from the [theme-cbjohnson] theme.
 
-![screenshot](https://cloud.githubusercontent.com/assets/4823640/5327427/6f9e61bc-7d02-11e4-9223-38ddbed176c8.png)
+# Features:
+- [x] Full path promt
+- [x] Greeting with system informations
 
-[yimmy-commit]: https://github.com/bpinto/oh-my-fish/tree/3a4b7de689cabf3522227f51177a489d915c8b4d/themes/yimmy
-[yimmy-author]: https://github.com/jhillyerd
+![screenshot](https://cloud.githubusercontent.com/assets/4295327/18944568/7abdb1c2-8626-11e6-9ed2-72e1f9763511.png)
+
+
+[theme-cbjohnson]: https://github.com/oh-my-fish/theme-cbjohnson
