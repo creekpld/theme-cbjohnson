@@ -8,8 +8,8 @@ function fish_greeting -d "Greeting message on shell session start up"
     echo -en "    ⣿⣿        \n"
     echo -en "    ⣿⣿⣿⣿⣿⣿   " (show_current_users) "\n"
     echo -en "    ⣿⣿       " (show_os_info) "\n"
-    echo -en "    ⣿⣿⣿⣿⣿⣿  " (show_cpu_info) "\n"
-    echo -en "            " (show_mem_info) "\n"
+    echo -en "    ⣿⣿⣿⣿⣿⣿   " (show_cpu_info) "\n"
+    echo -en "             " (show_mem_info) "\n"
     echo -en "    E Corp   " (show_net_info) "\n"
     echo ""
     echo "Have a Nice Day"
@@ -59,7 +59,7 @@ function show_os_info -d "Prints operating system info"
     set_color yellow
     echo -en "\tOS: "
     set_color 0F0  # green
-    echo -en (uname -sm)
+    echo -en (uname -smr)
     set_color normal
 end
 
