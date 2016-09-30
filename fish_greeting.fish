@@ -5,7 +5,7 @@ function fish_greeting -d "Greeting message on shell session start up"
     echo -en " " (welcome_message) "\n"
     echo -en "              \n"
     echo -en "    ⣿⣿⣿⣿⣿⣿   " (show_date_info) "\n"
-    echo -en "    ⣿⣿        \n"
+    echo -en "    ⣿⣿       " (show_tipp) "\n"
     echo -en "    ⣿⣿⣿⣿⣿⣿   " (show_current_users) "\n"
     echo -en "    ⣿⣿       " (show_os_info) "\n"
     echo -en "    ⣿⣿⣿⣿⣿⣿   " (show_cpu_info) "\n"
@@ -14,7 +14,6 @@ function fish_greeting -d "Greeting message on shell session start up"
     echo ""
     echo "Have a Nice Day"
 end
-
 
 function welcome_message -d "Say welcome to user"
 
@@ -40,6 +39,18 @@ function show_date_info -d "Prints information about date"
     echo -en "$up_time"
     set_color normal
     echo -en "."
+end
+
+function show_tipp -d "Prints a random programms descrition"
+
+   set --local cmd (ls /bin | xargs whatis  2> /dev/null | sort -R | head -n 1 | tr -d '([0-9])')
+
+   set_color yellow
+   echo -en "\tTipp: "
+   set_color 0F0  # green
+   echo -en "$cmd"
+   set_color normal
+
 end
 
 function show_current_users -d "Prints currently logged-in Users"
