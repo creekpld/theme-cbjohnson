@@ -43,7 +43,16 @@ end
 
 function show_tipp -d "Prints a random programms descrition"
 
-   set --local cmd (ls /bin | xargs whatis  2> /dev/null | sort -R | head -n 1 | tr -d '([0-9])')
+   set --local os_type (uname -s)
+   set --local cmd ""
+
+    if [ "$os_type" = "Linux" ]
+	set cmd (ls /bin | xargs whatis  2> /dev/null | sort -R | head -n 1 | tr -d '([0-9])')
+    else if [ "$os_type" = "Darwin" ]
+	set cmd (ls /bin | xargs whatis  2> /dev/null | gsort -R | head -n 1 | tr -d '([0-9])')
+    else
+	set cmd (echo "error: os type $os_type not supported!")
+    end
 
    set_color yellow
    echo -en "\tTipp: "
