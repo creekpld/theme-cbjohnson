@@ -41,23 +41,26 @@ function show_date_info -d "Prints information about date"
     echo -en "."
 end
 
-function show_tipp -d "Prints a random programms descrition"
+function show_tipp -d "Prints a random Program and Description"
 
-   set --local os_type (uname -s)
-   set --local cmd ""
+   set --local bin_count (ls $PATH | sort -ud | grep -v "/" | wc -l)
+   set --local tipp "none"
+   set --local line_number (math (random) \% $bin_count +1)
+   set --local line (ls $PATH | sort -ud | grep -v "/" | head -n $line_number | tail -n -1)
+   set --local tipp (whatis $line 2> /dev/null | tr -d '([0-9])' | tr -s ' ' | cut -c 1-80)
 
-    if [ "$os_type" = "Linux" ]
-	set cmd (ls /bin | xargs whatis  2> /dev/null | sort -R | head -n 1 | tr -d '([0-9])')
-    else if [ "$os_type" = "Darwin" ]
-	set cmd (ls /bin | xargs whatis  2> /dev/null | gsort -R | head -n 1 | tr -d '([0-9])')
-    else
-	set cmd (echo "error: os type $os_type not supported!")
-    end
+   while not test ( echo $tipp | grep -v 'nothing appropriate' );
+      or not test ( echo $tipp | grep -ve '[,]' )
+
+	    set line_number ( math (random) \% $bin_count +1 )
+   	    set line (ls $PATH | sort -ud | grep -v "/" | head -n $line_number | tail -n -1)
+        set tipp (whatis $line 2> /dev/null | tr -d '([0-9])' | tr -s ' ' | cut -c 1-80)
+   end
 
    set_color yellow
-   echo -en "\tTipp: "
+   echo -en "\tApp tipp: "
    set_color 0F0  # green
-   echo -en "$cmd"
+   echo -en "$tipp"
    set_color normal
 
 end
