@@ -49,6 +49,7 @@ function show_tipp -d "Prints a random Program and Description"
    set --local line (ls $PATH | sort -ud | grep -v "/" | head -n $line_number | tail -n -1)
    set --local tipp (whatis $line 2> /dev/null | tr -d '([0-9])' | tr -s ' ' | cut -c 1-80)
 
+<<<<<<< HEAD
    while not test ( echo $tipp | grep -v 'nothing appropriate' );
       or not test ( echo $tipp | grep -ve '[,]' )
 
@@ -56,6 +57,16 @@ function show_tipp -d "Prints a random Program and Description"
    	    set line (ls $PATH | sort -ud | grep -v "/" | head -n $line_number | tail -n -1)
         set tipp (whatis $line 2> /dev/null | tr -d '([0-9])' | tr -s ' ' | cut -c 1-80)
    end
+=======
+    if [ "$os_type" = "Linux" ]
+	set cmd (ls /bin | xargs whatis  2> /dev/null | sort -R | head -n 1 | tr -d '([0-9])')
+    else if [ "$os_type" = "Darwin" ]
+	# on macOS do brew install coreutils and use gsort
+	set cmd (ls /bin | xargs whatis  2> /dev/null | gsort -R | head -n 1 | tr -d '([0-9])')
+    else
+	set cmd (echo "error: os type $os_type not supported!")
+    end
+>>>>>>> origin/master
 
    set_color yellow
    echo -en "\tApp tipp: "
