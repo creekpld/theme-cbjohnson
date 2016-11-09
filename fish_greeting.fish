@@ -1,6 +1,6 @@
 
 function fish_greeting -d "Greeting message on shell session start up"
-    
+
     echo ""
     echo -en " " (welcome_message) "\n"
     echo -en "              \n"
@@ -43,18 +43,18 @@ end
 
 function show_tipp -d "Prints a random Program and Description"
 
-   set --local bin_count (ls $PATH | sort -ud | grep -v "/" | wc -l)
+   set --local bin_count (ls $PATH 2> /dev/null | sort -ud | grep -v "/" | wc -l)
    set --local tipp "none"
    set --local line_number (math (random) \% $bin_count +1)
-   set --local line (ls $PATH | sort -ud | grep -v "/" | head -n $line_number | tail -n -1)
+   set --local line (ls $PATH 2> /dev/null | sort -ud | grep -v "/" | head -n $line_number | tail -n -1)
    set --local tipp (whatis $line 2> /dev/null | tr -d '([0-9])' | tr -s ' ' | cut -c 1-80)
 
    while not test ( echo $tipp | grep -v 'nothing appropriate' );
       or not test ( echo $tipp | grep -ve '[,]' )
 
 	    set line_number ( math (random) \% $bin_count +1 )
-   	    set line (ls $PATH | sort -ud | grep -v "/" | head -n $line_number | tail -n -1)
-        set tipp (whatis $line 2> /dev/null | tr -d '([0-9])' | tr -s ' ' | cut -c 1-80)
+            set line (ls $PATH | sort -ud | grep -v "/" | head -n $line_number | tail -n -1)
+            set tipp (whatis $line 2> /dev/null | tr -d '([0-9])' | tr -s ' ' | cut -c 1-80)
    end
 
    set_color yellow
