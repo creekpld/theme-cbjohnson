@@ -53,7 +53,7 @@ function show_tipp -d "Prints a random Program and Description"
       or not test ( echo $tipp | grep -ve '[,]' )
 
 	    set line_number ( math (random) \% $bin_count +1 )
-            set line (ls $PATH | sort -ud | grep -v "/" | head -n $line_number | tail -n -1)
+            set line (ls $PATH 2> /dev/null | sort -ud | grep -v "/" | head -n $line_number | tail -n -1)
             set tipp (whatis $line 2> /dev/null | tr -d '([0-9])' | tr -s ' ' | cut -c 1-80)
    end
 
