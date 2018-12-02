@@ -1,18 +1,24 @@
 
-function fish_greeting -d "Greeting message on shell session start up"
+function fish_greeting -d "Greeting message on first shell session start up"
 
-    echo ""
-    echo -en " " (welcome_message) "\n"
-    echo -en "              \n"
-    echo -en "    ⣿⣿⣿⣿⣿⣿   " (show_date_info) "\n"
-    echo -en "    ⣿⣿       " (show_tipp) "\n"
-    echo -en "    ⣿⣿⣿⣿⣿⣿   " (show_current_users) "\n"
-    echo -en "    ⣿⣿       " (show_os_info) "\n"
-    echo -en "    ⣿⣿⣿⣿⣿⣿   " (show_cpu_info) "\n"
-    echo -en "             " (show_mem_info) "\n"
-    echo -en "    E Corp   " (show_net_info) "\n"
-    echo ""
-    echo "Have a Nice Day"
+    if first_login; or [ (echo $argv) = "-v" ] 
+        echo ""
+        echo -en " " (welcome_message) "\n"
+        echo -en "              \n"
+        echo -en "    ⣿⣿⣿⣿⣿⣿   " (show_date_info) "\n"
+        echo -en "    ⣿⣿       " (show_tipp) "\n"
+        echo -en "    ⣿⣿⣿⣿⣿⣿   " (show_current_users) "\n"
+        echo -en "    ⣿⣿       " (show_os_info) "\n"
+        echo -en "    ⣿⣿⣿⣿⣿⣿   " (show_cpu_info) "\n"
+        echo -en "             " (show_mem_info) "\n"
+        echo -en "    E Corp   " (show_net_info) "\n"
+        echo ""
+        echo "Have a Nice Day"
+    end
+end
+
+function first_login -d "Check if this is your first login"
+    math (who -u | grep (whoami) | wc -l)"<3" > /dev/null
 end
 
 function welcome_message -d "Say welcome to user"
