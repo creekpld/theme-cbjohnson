@@ -18,7 +18,7 @@ function fish_greeting -d "Greeting message on first shell session start up"
 end
 
 function first_login -d "Check if this is your first login"
-    math (who -u | grep (whoami) | wc -l)"<3" > /dev/null
+    test (who -u | grep (whoami) | wc -l)"<3" > /dev/null
 end
 
 function welcome_message -d "Say welcome to user"
@@ -34,7 +34,7 @@ end
 function show_date_info -d "Prints information about date"
 
     #set --local up_time (uptime |sed 's/^ *//g' |cut -d " " -f4,5 |tr -d ",")
-    set --local up_time   (uptime | cut -d ',' -f1 | cut -d 'p' -f2)
+    set --local up_time  (uptime | cut -d ',' -f1 | cut -d 'p' -f2)
 
     echo -en "\tToday is "
     set_color cyan
