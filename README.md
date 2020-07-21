@@ -1,8 +1,12 @@
-## PLD theme 
+# This is not the Repo you are looking for! :alien:
+
+New development is taking place in [gitlab.com/pdylong/theme-pld](https://gitlab.com/pdylong/theme-pld) :ok_hand:.
+
+## Theme PLD 
 
 A theme forked from the [theme-cbjohnson] theme.
 
-# Features:
+## Features:
 - [x] Full path promt
 - [x] Greeting with system informations
 
